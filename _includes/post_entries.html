@@ -1,14 +1,20 @@
 <section id="three">
   <div class="container">
-    <h3>A Few Accomplishments</h3>
-    <p>Integer eu ante ornare amet commetus vestibulum blandit integer in curae ac faucibus integer non. Adipiscing cubilia elementum integer. Integer eu ante ornare amet commetus.</p>
+    <h3>A Few Posts</h3>
+    <p>Here's some of the more recent posts - if you want more, explore the archive!</p>
     <div class="features">
       <article>
-        <a href="#" class="image"><img src="images/pic01.jpg" alt="" /></a>
+        {% for post in site.posts %}
+        <a href="#" class="image"><img src= "{{ post.image | escape }}" alt="" /></a>
         <div class="inner">
-          <h4>Possibly broke spacetime</h4>
-          <p>Integer eu ante ornare amet commetus vestibulum blandit integer in curae ac faucibus integer adipiscing ornare amet.</p>
+          <h4>
+            <a class="post-link" href="{{ post.url | relative_url }}">{{ post.title | escape }}</a>
+          </h4>
+          <p>
+            {{ post.excerpt }}
+          </p>
         </div>
+        {% endfor %}
       </article>
       <article>
         <a href="#" class="image"><img src="images/pic02.jpg" alt="" /></a>
@@ -27,3 +33,24 @@
     </div>
   </div>
 </section>
+
+<div class="home">
+
+  <h1>Posts</h1>
+
+  {{ content }}
+<div class="container">
+  <ul class="list-group">
+    {% for post in site.posts %}
+      <li class="list-group-item">
+        <span class="post-meta">{{ post.date | date: date_format }}</span>
+        <h3>
+
+        </h3>
+      </li>
+    {% endfor %}
+  </ul>
+</div>
+  <p class="rss-subscribe">subscribe <a href="{{ "/feed.xml" | relative_url }}">via RSS</a></p>
+
+</div>
